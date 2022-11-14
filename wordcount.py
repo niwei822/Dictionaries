@@ -1,5 +1,5 @@
 """Count words in file."""
-
+import sys
 
 # put your code here.
 fish_locations = {"shark": "ocean", "salmon": "river"}
@@ -21,15 +21,31 @@ scores = {"Bob": 10, "Joe": 3, "Jack": 6, "Jane": 15}
 # print(my_dict.items())
 # for item in my_dict.items():
 #     print(f"key = {item[0]}, value = {item[1]}")
+#print(sys.argv)
 
-data = open("twain.txt")
-word_counts = {}
-for line in data:
-    words = line.rstrip().split(" ")
+
+def tokenize(filename):
+    token = []
+    with open(filename) as data:
+        for line in data:
+            word = line.rstrip().split(" ")
+            token.extend(word)
+    return token
+#tokenize("test.txt")
+     
+def count_words(words):
+    words_counts = {}
     for word in words:
-        word_counts[word] = word_counts.get(word, 0) + 1
-for item in word_counts.items():
-    print(item[0], item[1])
+        words_counts[word] = words_counts.get(word, 0) + 1
+    return words_counts
+#count_words(["apple", "berry", "cherry", "apple"])
+
+def print_word_counts(word_counts):
+    for word, count in word_counts.items():
+      print(word, count)
         
-    
-    
+filename = "test.txt"
+token = tokenize(filename)
+words_counts = count_words(token)
+print_word_counts(words_counts)
+       

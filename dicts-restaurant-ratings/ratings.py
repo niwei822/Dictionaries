@@ -46,22 +46,44 @@ def update_rating(restaurant_rating):
             restaurant_rating[restaurant] = update
             print(f"Now {restaurant} is rated at {update}")
         break
+
+def user_update(restaurant_rating):
+    print(restaurant_rating)
+    while True:
+        user_choose = input("Please choose which restaurant you want to update rating: ").title()
+        update = int(input("Please enter new rating: "))
+        if update not in range(1, 6):
+            print("Please enten rating between 1 to 5!")
+            continue
+        else:
+            for restaurant, _ in restaurant_rating.items():
+                if user_choose == restaurant:
+                    restaurant_rating[restaurant] = update
+                    print(f"Now {restaurant} is rated at {update}")
+        break
+    
+        
+            
+    
     
 #restaurant_rating = display_rating2("scores.txt")
 #update_rating(restaurant_rating)
 
 def user_choice():
     while True:
-        choice = int(input("What do you want to choose 1- see all ratings, 2- add a new restaurant, 3- quit, 4- update rating?  "))
+        choice = int(input("What do you want to choose 1- see all ratings, 2- add a new restaurant, 3- update random rating,4- choose and update, 5- quit?  "))
         if choice == 1:
             display_rating1("scores.txt")
         elif choice == 2:
             restaurant_rating = display_rating2("scores.txt")
             add_restaurant_score(restaurant_rating)
-        elif choice == 4:
+        elif choice == 3:
             restaurant_rating = display_rating2("scores.txt")
             update_rating(restaurant_rating)
-        elif choice == 3:
+        elif choice == 4:
+            restaurant_rating = display_rating2("scores.txt")
+            user_update(restaurant_rating)
+        elif choice == 5:
             break
         
 user_choice()        

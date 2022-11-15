@@ -33,17 +33,17 @@ def add_restaurant_score(restaurant_rating):
         for resataurant, rating in sorted(restaurant_rating.items()):
             print(f"{resataurant} is rated at {rating}")
         break
-    return
 
 def user_choice():
-    choice = int(input("What do you want to choose 1- see all ratings, 2- add a new restaurant, 3- quit? "))
-    if choice == 1:
-        return display_rating1("scores.txt")
-    elif choice == 2:
-        restaurant_rating = display_rating2("scores.txt")
-        add_restaurant_score(restaurant_rating)
-    elif choice == 3:
-        exit
+    while True:
+        choice = int(input("What do you want to choose 1- see all ratings, 2- add a new restaurant, 3- quit? "))
+        if choice == 1:
+            display_rating1("scores.txt")
+        elif choice == 2:
+            restaurant_rating = display_rating2("scores.txt")
+            add_restaurant_score(restaurant_rating)
+        elif choice == 3:
+            break
         
 user_choice()        
 
